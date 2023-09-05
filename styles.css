@@ -19,6 +19,18 @@ body, html {
   color: #000000;
 }
 
+.hover-word {
+  transition: color 0.3s ease;
+}
+
+.hover-word:hover {
+  color: #8f8f8f;
+}
+
+.dot {
+  color: #000000;
+}
+
 .title-text p {
   font-size: 1em;
   color: #000000;
