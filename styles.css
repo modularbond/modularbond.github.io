@@ -8,9 +8,8 @@ body, html {
   background-color: #f5f5f5;
 }
 
-.engraved-text a {
+.engraved-text {
   font-family: "Helvetica Neue", sans-serif;
-  text-decoration: none !important;
   font-size: 10em;
   color: #f0f0f0;
   text-shadow: 
