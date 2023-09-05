@@ -13,3 +13,7 @@ body, html {
   font-size: 2.5em;
   color: #000000;
 }
+::selection {
+  background: #bebebe71;  /* Modern grey */
+  color: #000000;  /* Text color when highlighted */
+}
