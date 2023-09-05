@@ -5,7 +5,7 @@ body, html {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Titillium Web", sans-serif;
+  font-family: "Handjet";
   background-color: #ffffff;
 }
 
@@ -23,7 +23,6 @@ body, html {
   font-size: 1em;
   color: #000000;
 }
-
 
 ::selection {
   background: #bebebe71;  /* Modern grey */
