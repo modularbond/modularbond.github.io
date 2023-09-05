@@ -1,0 +1,18 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f5f5;
+}
+
+.engraved-text {
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 10em;
+  color: #f0f0f0;
+  text-shadow: 
+    1px 1px 0 #d0d0d0,
+    -1px -1px 0 #ffffff;
+}
