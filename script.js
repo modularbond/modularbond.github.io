@@ -1,8 +1,8 @@
 
-const scrambleChars = "_01";
+const scrambleChars = "x*/";
 const targetText1 = "modular";
 const targetText2 = "bond";
-const durationPerLetter = 40;  // Duration to unscramble each letter (in milliseconds)
+const durationPerLetter = 50;  // Duration to unscramble each letter (in milliseconds)
 
 const word1Element = document.getElementById("word1");
 const word2Element = document.getElementById("word2");

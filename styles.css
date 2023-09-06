@@ -24,7 +24,7 @@ body, html {
 }
 
 .hover-word:hover {
-  color: rgba(0, 119, 255, 0.452);
+  color: rgb(0, 119, 255);
 }
 
 .dot {
