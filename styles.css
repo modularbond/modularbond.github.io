@@ -14,17 +14,17 @@ body, html {
 }
 
 .title-text h1 {
-  font-size: 5.5em;
+  font-size: 4em;
   font-weight: normal;
   color: #000000;
 }
 
 .hover-word {
-  transition: color 0.3s ease;
+  transition: color 0.25s ease;
 }
 
 .hover-word:hover {
-  color: #8f8f8f;
+  color: rgba(0, 119, 255, 0.452);
 }
 
 .dot {
