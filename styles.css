@@ -18,7 +18,7 @@ body, html {
   z-index: 9999;
   opacity: 1;
   pointer-events: none;
-  animation: dissolve 1s ease-out forwards;
+  animation: dissolve 0.5s ease-out forwards;
 }
 
 @keyframes dissolve {
@@ -35,7 +35,7 @@ body, html {
 }
 
 .title-text h1 {
-  font-size: 4em;
+  font-size: 2em;
   font-weight: normal;
   color: #000000;
 }
@@ -45,7 +45,7 @@ body, html {
 }
 
 .hover-word:hover {
-  color: rgb(0, 119, 255);
+  color: grey;
 }
 
 .dot {
@@ -54,7 +54,7 @@ body, html {
 
 .title-text p {
   font-family: 'Handjet', cursive;
-  font-size: 2.5em;
+  font-size: 1.25em;
   color: #000000;
 }
 
