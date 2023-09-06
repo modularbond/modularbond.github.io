@@ -8,9 +8,30 @@ body, html {
   font-family: "Handjet";
   background-color: #ffffff;
 }
+.dissolve-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  z-index: 9999;
+  opacity: 1;
+  pointer-events: none;
+  animation: dissolve 1s ease-out forwards;
+}
 
+@keyframes dissolve {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
 .title-text {
   text-align: center;
+  z-index: 1;
 }
 
 .title-text h1 {
@@ -32,7 +53,13 @@ body, html {
 }
 
 .title-text p {
-  font-size: 1em;
+  font-family: 'Handjet', cursive;
+  font-size: 2.5em;
+  color: #000000;
+}
+
+.title-text a {
+  text-decoration: dotted;
   color: #000000;
 }
 

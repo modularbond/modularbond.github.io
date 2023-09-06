@@ -44,3 +44,4 @@ setTimeout(() => {
 setTimeout(() => {
   unscramble(word2Element, targetText2, 0);
 }, 100);  // Initial delay before starting to unscramble
+
