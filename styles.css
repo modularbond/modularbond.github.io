@@ -8,6 +8,19 @@ body, html {
   font-family: "Handjet";
   background-color: #ffffff;
 }
+
+.ascii-container {
+  text-align: center;
+}
+
+.ascii-art {
+  white-space: pre;
+  display: inline-block;
+  text-align: left;
+  margin: auto;
+  font-family: "Handjet", cursive;
+}
+
 .dissolve-mask {
   position: fixed;
   top: 0;
