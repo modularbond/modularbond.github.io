@@ -76,6 +76,12 @@ body, html {
   color: #000000;
 }
 
+.title-text h2 {
+  color: bebebe71;
+  user-select: none;
+  font-size: 1em;
+}
+
 ::selection {
   background: #bebebe71;  /* Modern grey */
   color: #000000;  /* Text color when highlighted */
