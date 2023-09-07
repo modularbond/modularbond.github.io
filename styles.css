@@ -48,7 +48,7 @@ body, html {
 }
 
 .title-text h1 {
-  font-size: 2em;
+  font-size: 3em;
   font-weight: normal;
   color: #000000;
 }
@@ -67,7 +67,7 @@ body, html {
 
 .title-text p {
   font-family: 'Handjet', cursive;
-  font-size: 1.5em;
+  font-size: 1.75em;
   color: #000000;
 }
 
