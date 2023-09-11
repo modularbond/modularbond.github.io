@@ -5,7 +5,7 @@ body, html {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Comfortaa";
+  font-family: "Kanit";
   background-color: #000000;
 }
 
@@ -18,7 +18,7 @@ body, html {
   display: inline-block;
   text-align: left;
   margin: auto;
-  font-family: "Comfortaa";
+  font-family: "Kanit";
 }
 
 .dissolve-mask {
@@ -59,7 +59,7 @@ body, html {
 }
 
 .title-text p {
-  font-family: 'Comfortaa';
+  font-family: 'Kanit';
   font-size: 1.15em;
   color: #ffffff;
 }
@@ -68,7 +68,7 @@ body, html {
   text-decoration: none;
   color: #ffffff;
   font-size: 1em;
-  font-family: 'Comfortaa', sans-serif;
+  font-family: 'Kanit', sans-serif;
   font-weight: normal;
 }
 
