@@ -1,5 +1,5 @@
 
-const scrambleChars = "./*";
+const scrambleChars = "❙❚❘";
 const targetText1 = "modular";
 const targetText2 = "bond";
 const durationPerLetter = 40;  // Duration to unscramble each letter (in milliseconds)
