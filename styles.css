@@ -1,7 +1,5 @@
-@font-face {
-  font-family: 'Noto Sans Linear B';
-  src: url('./fonts/NotoSansLinearB-Regular.ttf') format('truetype');
-}
+@import url("https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,500&display=swap");
 
 body, html {
   margin: 0;
@@ -10,8 +8,8 @@ body, html {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Noto Sans Linear B", sans-serif;
-  background-color: #CDC8CE;
+  font-family: 'Major Mono Display', monospace;
+  background-color: #e1d8e2;
   color: #2d3b49;
 }
 
