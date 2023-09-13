@@ -11,8 +11,8 @@ body, html {
   justify-content: center;
   align-items: center;
   font-family: "Noto Sans Linear B", sans-serif;
-  background-color: #22223b;
-  color: #9a8c98;
+  background-color: #B8A9A1;
+  color: #2d3b49;
 }
 
 .ascii-container {
@@ -56,17 +56,17 @@ body, html {
 }
 
 .hover-word:hover {
-  color: #c9ada7;
+  color: #1d1a17a2;
 }
 
 .title-text p {
-  font-size: 1.15em;
+  font-size: 1.25em;
 }
 
 .title-text h1 a {
   text-decoration: none;
-  color: #9a8c98;
-  font-size: 1em;
+  color: inherit;
+  font-size: 2em;
   font-weight: normal;
 }
 
@@ -76,6 +76,6 @@ body, html {
 }
 
 ::selection {
-  background: #c9ada7;  /* Modern grey */
+  background: #a39b977c;  /* Modern grey */
   color: #4a4e69;  /* Text color when highlighted */
 }
