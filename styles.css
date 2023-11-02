@@ -1,5 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,500&display=swap");
+@font-face {
+  font-family: 'Boston Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Boston Regular'), url('fonts/BostonRegular.woff') format('woff');
+  }
 
 body, html {
   margin: 0;
@@ -8,9 +12,13 @@ body, html {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'Major Mono Display', monospace;
-  background-color: #e1d8e2;
-  color: #2d3b49;
+  font-family: 'Boston Regular';
+}
+
+.title h1 {
+  text-align: center;
+  font-size: 3em;
+  font-style: normal;
 }
 
 .ascii-container {
@@ -45,35 +53,8 @@ body, html {
     opacity: 0;
   }
 }
-.title-text {
-  text-align: center;
-  z-index: 1;
-}
-.hover-word {
-  transition: color 0.25s ease;
-}
 
-.hover-word:hover {
-  color: #1d1a17a2;
-}
-
-.title-text p {
-  font-size: 1.25em;
-}
-
-.title-text h1 a {
-  text-decoration: none;
-  color: inherit;
-  font-size: 2em;
-  font-weight: normal;
-}
-
-.title-text h2 {
-  user-select: none;
-  font-size: 1em;
-}
 
 ::selection {
-  background: #a39b977c;  /* Modern grey */
-  color: #4a4e69;  /* Text color when highlighted */
+  background: #a39b9735;  /* Modern grey */
 }
