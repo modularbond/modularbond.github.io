@@ -8,18 +8,10 @@
 body, html {
   margin: 0;
   padding: 0;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-family: 'Boston Regular';
 }
 
-.title h1 {
-  text-align: center;
-  font-size: 3em;
-  font-style: normal;
-}
+
 
 .ascii-container {
   text-align: center;
@@ -32,29 +24,25 @@ body, html {
   margin: auto;
 }
 
-.dissolve-mask {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: white;
-  z-index: 9999;
-  opacity: 1;
-  pointer-events: none;
-  animation: dissolve 0.5s ease-out forwards;
-}
-
-@keyframes dissolve {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-
 ::selection {
   background: #a39b9735;  /* Modern grey */
+}
+
+#particles-js {
+  overflow-y: hidden;
+  position: relative;
+  height: 100vh; /* Full height of the viewport */
+}
+
+.title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%; /* Full width to center the text properly */
+  text-align: center; /* Center text horizontally */
+}
+
+h2 {
+  margin: 0; /* Remove default margin */
 }
