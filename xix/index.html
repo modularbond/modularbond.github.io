@@ -4,17 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>xix</title>
+<link rel="stylesheet" href="styles.css">
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.10.4/dist/gsap.min.js"></script>
 <style>
   body, html {
     margin: 0;
-    padding: 0;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: black; /* Change to black */
   }
+
   #gradient-canvas {
     width: 100vw;
     height: 100vh;
@@ -37,7 +38,17 @@
 </style>
 </head>
 <body>
-<div id="gradient-canvas"></div>
+  <script>
+    document.addEventListener('click', function() {
+        // Get the current URL and remove the last segment (index.html)
+        const baseUrl = window.location.href.replace(/\/[^\/]*$/, '');
+        // Navigate to ideas.html within the same base URL
+        window.location.href = baseUrl + '/ideas.html';
+    });
+  </script>
+<div id="gradient-canvas">
+
+</div>
 <script>
 function getRandomColor() {
   let letters = '0123456789ABCDEF';
