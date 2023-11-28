@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>xix</title>
-<link rel="stylesheet" href="styles.css">
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.10.4/dist/gsap.min.js"></script>
 <style>
   body, html {
@@ -20,9 +19,10 @@
     width: 100vw;
     height: 100vh;
     position: relative;
-    background: radial-gradient(circle at center center, #000000 20%, #000000 20%);
+    background: radial-gradient(circle at center center, #000000 50%, #000000 50%);
     overflow: hidden;
   }
+
   #gradient-canvas::after {
     content: "";
     position: absolute;
@@ -31,25 +31,20 @@
     bottom: 0;
     left: 0;
     background: url("data:image/svg+xml,%3Csvg viewBox='0 0 500 500' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1' numOctaves='5000' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    filter: contrast(20%) brightness(15%) invert(1050%);
+    filter: contrast(20%) brightness(18%) invert(1050%);
     mix-blend-mode: multiply;
     pointer-events: none;
   }
 </style>
 </head>
 <body>
-  <script>
-    document.addEventListener('click', function() {
-        // Get the current URL and remove the last segment (index.html)
-        const baseUrl = window.location.href.replace(/\/[^\/]*$/, '');
-        // Navigate to ideas.html within the same base URL
-        window.location.href = baseUrl + '/ideas';
-    });
-  </script>
-<div id="gradient-canvas">
-
-</div>
+<div id="gradient-canvas"></div>
 <script>
+document.addEventListener('click', function() {
+    // Navigate to ideas.html within the same base URL
+    window.location.href = window.location.href.replace(/\/[^\/]*$/, '') + '/ideas';
+});
+
 function getRandomColor() {
   let letters = '0123456789ABCDEF';
   let color = '#';
@@ -61,20 +56,24 @@ function getRandomColor() {
 
 function animateGradient() {
   const canvas = document.getElementById('gradient-canvas');
-  // Get two random colors for the gradient
   const color1 = getRandomColor();
   const color2 = getRandomColor();
-  
+
+  // Generate random sizes for the gradient
+  const startSize = Math.random() * 20; // Controls the start size of the gradient (e.g., 30%)
+  const endSize = startSize + Math.random() * 30; // Controls how much the gradient grows (e.g., up to 100%)
+
   gsap.to(canvas, {
-    duration: 5, // Duration of the animation in seconds
-    // Create a gradient with two random colors and black, keeping it centered and at 50% size
-    background: `radial-gradient(circle at center center, ${color1} 0%, ${color2} 30%, #000000 50%, #000000 100%)`,
-    ease: "sine.inOut", // This easing function creates a smooth transition
-    onComplete: animateGradient // Once the animation is complete, start it again
+    duration: 1, // Duration of the animation in seconds
+    // Create a gradient with dynamic colors, sizes, and positions
+    background: `radial-gradient(circle at ${Math.random()*100}% ${Math.random()*100}%, ${color1} ${startSize}%, ${color2} ${endSize}%, #000000 50%)`,
+    ease: "sine.inOut", // Smooth transition
+    onComplete: animateGradient // Recur the animation
   });
 }
 
-// Start the animation
+
+// Initiate the animation
 animateGradient();
 </script>
 </body>
