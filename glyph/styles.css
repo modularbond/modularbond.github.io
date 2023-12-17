@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Michroma&family=Source+Code+Pro&display=swap');
+  
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f4f3ec; /* Dark background to enhance the chrome effect */
+
+    
+    font-family: 'Source Code Pro', monospace;
+
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard syntax */
+}
+
+img {
+    width: 70px;
+    height: 70px;
+
+  }
+
+  .rotate {
+    animation: rotation 7s infinite linear;
+  }
+  
+  @keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+footer {
+    position: fixed;
+    bottom: 5%;
+    width: 100%;
+    text-align: center;
+    background: transparent;
+ }
+
+ .container {
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.text {
+  font-weight: 100;
+  font-size: 12px;
+  color: #000000c2;
+}
+.dud {
+    color: #313131;
+}
