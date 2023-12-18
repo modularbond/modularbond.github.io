@@ -67,8 +67,10 @@ footer {
   position: absolute;
   z-index: 100;
   pointer-events: none;
+  background-color: #f4f3ec;
 }
 #noise-rect {
   width: 100vw;
   height: 100vh;
+  background-color: #f4f3ec;
 }
