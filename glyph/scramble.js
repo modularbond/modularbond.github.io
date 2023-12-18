@@ -61,8 +61,9 @@ class TextScramble {
   // ——————————————————————————————————————————————————
   
   const phrases = [
-    'modular.bond > Glyph',
-    'Exploring immeasurable relationships'
+    'modular.bond',
+    "Work in Progress",
+    'Connect with us on Are.na'
   ]
   
   const el = document.querySelector('.text')

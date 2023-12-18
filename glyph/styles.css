@@ -8,9 +8,8 @@ body {
     align-items: center;
     height: 100vh;
     background: #f4f3ec; /* Dark background to enhance the chrome effect */
-
-    
     font-family: 'Source Code Pro', monospace;
+    overflow: hidden;
 
     -webkit-user-select: none; /* Safari */
     -moz-user-select: none; /* Firefox */
@@ -59,4 +58,17 @@ footer {
 }
 .dud {
     color: #313131;
+}
+
+#noise-svg {
+  height: 100%;
+  width: 100%;
+  opacity: 0.12;
+  position: absolute;
+  z-index: 100;
+  pointer-events: none;
+}
+#noise-rect {
+  width: 100vw;
+  height: 100vh;
 }
