@@ -3,41 +3,44 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>modular.bond.live</title>
+<title>modular.live</title>
 <style>
-  /* Set the body background to black */
-  body {
-    margin: 0;
-    padding: 0;
-    background-color: black;
-    color: white; /* For readable text */
+  /* Container styles */
+  .iframe-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Take up 100% of the viewport height */
+    width: 100%; /* Take up 100% of the viewport width */
   }
 
-  /* Container styles */
-  .video-container {
+  /* Responsive iframe styles */
+  iframe {
+    width: 90vw; /* 90% of the viewport width, increased from 80vw */
+    height: 50.625vw; /* Adjusted to maintain a 16:9 aspect ratio, calculated as (90vw * 9) / 16 */
+    max-width: 1280px; /* Adjusted maximum width if necessary */
+    max-height: 720px; /* Adjusted maximum height to match the 16:9 ratio at max width */
+    border: 0; /* Remove border */
+  }
+  
+  /* Ensure the iframe container is always centered and takes full height */
+  body, html {
+    height: 100%;
+    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Full height of the viewport */
-  }
-
-  /* Responsive video sizing */
-  iframe {
-    width: 80vw; /* 80% of the viewport width */
-    height: 45vw; /* Maintain a 16:9 aspect ratio */
-    max-width: 960px; /* Maximum size */
-    max-height: 540px; /* Adjust according to max-width for aspect ratio */
   }
 </style>
 </head>
 <body>
 
-<div class="video-container">
+<div class="iframe-container">
+  <!-- Embed YouTube Live Stream -->
   <iframe 
-      src="https://www.youtube.com/embed/live_stream?channel=UCXwQ7RZ8pBb4KO-_MI2ff2w&autoplay=1&mute=0&controls=1&modestbranding=1&rel=0&showinfo=0" 
-      frameborder="0" 
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-      allowfullscreen>
+    src="https://www.youtube.com/embed/live_stream?channel=UCXwQ7RZ8pBb4KO-_MI2ff2w&controls=0&autoplay=1&modestbranding=1&rel=0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen>
   </iframe>
 </div>
 
