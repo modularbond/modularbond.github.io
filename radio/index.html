@@ -39,22 +39,28 @@
     </style>
 </head>
 <body>
-    
-    <script>
+
+     <script>
         // Function to check the live status of the YouTube channel
         function checkLiveStatusAndRedirect() {
             fetch('https://api.modular.bond/api/youtube-api')
                 .then(response => response.json())
                 .then(data => {
-                    if (data.pageInfo.totalResults > 0) {
+                    // Assuming the API correctly reflects the live status
+                    // with `pageInfo.totalResults > 0` indicating an active live stream.
+                    if (data.pageInfo && data.pageInfo.totalResults > 0) {
                         // If the channel is live, redirect
                         window.location.href = 'https://modular.bond/radio/live';
                     } else {
                         // Not live, log status or handle accordingly
-                        console.log('Channel is not live.');
+                        console.log('We are not live.');
+                        // Optionally, display a message or take other actions
                     }
                 })
-                .catch(error => console.error('Error fetching live status:', error));
+                .catch(error => {
+                    console.error('Error fetching live status:', error);
+                    // Handle error (e.g., show an error message)
+                });
         }
 
         // Periodically check the live status every 30 seconds
@@ -63,6 +69,7 @@
         // Also check immediately on page load
         checkLiveStatusAndRedirect();
     </script>
+</body>
 
 <div id="factorization-diagram"></div>
 <script>
