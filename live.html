@@ -1,48 +1,136 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>modular.live</title>
-<style>
-  /* Container styles */
-  .iframe-container {
-    display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    height: 100vh; /* Take up 100% of the viewport height */
-    width: 100%; /* Take up 100% of the viewport width */
-  }
+    <title>modular.live</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <style>
+        body, html {
+            height: 100%; /* Full height */
+            margin: 0; /* Remove default margin */
+            display: flex; /* Use flexbox */
+            overflow: hidden;
+            justify-content: center;
+            align-items: center; /* Center vertically */
+        }
+        .dot {
+            fill: black; /* Dot color */
+            transition: fill 0.6s ease-in-out; /* Smooth transition for fill color */
+        }
+        #factorization-diagram {
+            width: 600px; /* Width of the SVG element for a larger view */
+            height: 600px; /* Height of the SVG element for a larger view */
+            animation: spin 25s linear infinite; /* Add rotation animation */
+        }
 
-  /* Responsive iframe styles */
-  iframe {
-    width: 90vw; /* 90% of the viewport width, increased from 80vw */
-    height: 50.625vw; /* Adjusted to maintain a 16:9 aspect ratio, calculated as (90vw * 9) / 16 */
-    max-width: 1280px; /* Adjusted maximum width if necessary */
-    max-height: 720px; /* Adjusted maximum height to match the 16:9 ratio at max width */
-    border: 0; /* Remove border */
-  }
-  
-  /* Ensure the iframe container is always centered and takes full height */
-  body, html {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-</style>
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Keyframes for pulsing animation */
+        @keyframes pulse {
+            0%, 100% {
+                r: 3;
+            }
+            50% {
+                r: 6; /* Increase radius to create a pulse effect */
+            }
+        }
+    </style>
 </head>
 <body>
+    
+<div id="factorization-diagram"></div>
+<script>
+    const number = 125; // Number to create the diagram for
+    const factors = [5, 5, 5]; // This represents the factorization of 125 as 5^3
 
-<div class="iframe-container">
-  <!-- Embed YouTube Live Stream -->
-  <iframe 
-    src="https://www.youtube.com/embed/live_stream?channel=UCXwQ7RZ8pBb4KO-_MI2ff2w&controls=0&autoplay=1&modestbranding=1&rel=0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-    allowfullscreen>
-  </iframe>
-</div>
+    const width = 600, // Width of the SVG element for a larger view
+          height = 600, // Height of the SVG element for a larger view
+          outerRadius = 200, // Radius for the large cluster
+          innerRadius = 50, // Radius for the smaller clusters
+          dotRadius = 8; // Radius for each dot
+
+    const svg = d3.select("#factorization-diagram")
+                  .append("svg")
+                  .attr("width", width)
+                  .attr("height", height)
+                  .style("transform-origin", "center"); // Ensure rotation is around the center
+
+    // Function to calculate the positions of the groups in a circle
+    function calculatePositions(radius, count, startAngle = 0) {
+        const positions = [];
+        for (let i = 0; i < count; i++) {
+            const angle = (i / count) * (2 * Math.PI) + startAngle; // Angle for the current element
+            const x = radius * Math.cos(angle);
+            const y = radius * Math.sin(angle);
+            positions.push({x: x, y: y});
+        }
+        return positions;
+    }
+
+    // Calculate positions for the outer groups
+    const outerGroupPositions = calculatePositions(outerRadius, factors[0]);
+
+    outerGroupPositions.forEach((outerGroupPos, i) => {
+        // Calculate positions for the inner groups within the current outer group
+        const innerGroupPositions = calculatePositions(innerRadius, factors[1], Math.PI / factors[1]);
+
+        innerGroupPositions.forEach((innerGroupPos, j) => {
+            const group = svg.append("g")
+                             .attr("transform", `translate(${width / 2 + outerGroupPos.x + innerGroupPos.x}, ${height / 2 - outerGroupPos.y - innerGroupPos.y})`);
+            
+            // Draw the dots with pulse animation
+            const dotPositions = calculatePositions(dotRadius * 2.5, factors[2]);
+            dotPositions.forEach((dotPos, k) => {
+                const dot = group.append("circle")
+                                 .attr("class", "dot")
+                                 .attr("cx", dotPos.x) // Position relative to the group
+                                 .attr("cy", dotPos.y) // Position relative to the group
+                                 .attr("r", dotRadius);
+
+                // Apply the pulse animation indefinitely
+                dot.style("animation", "pulse 1.5s infinite ease-in-out");
+            });
+        });
+    });
+</script>
+
+<!-- The video player container -->
+<div id="player" style="position: fixed; width: 1px; height: 1px; bottom: 0; overflow: hidden;"></div> <!-- Hides the video element -->
+
+<script>
+  // Load the IFrame Player API code asynchronously.
+  var tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/iframe_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  var player;
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+      height: '1',
+      width: '1',
+      channel: 'UCXwQ7RZ8pBb4KO-_MI2ff2w', // Your channel ID
+      events: {
+        'onReady': onPlayerReady
+      },
+      playerVars: {
+        autoplay: 1, // Auto-play the video
+        controls: 0, // Hide the video controls
+        showinfo: 0, // Hide the video title and uploader info
+        rel: 0, // Don't show related videos after the stream ends
+        modestbranding: 1 // Limit YouTube branding
+      }
+    });
+  }
+
+  // The API will call this function when the video player is ready.
+  function onPlayerReady(event) {
+    event.target.playVideo(); // Play the video when the player is ready
+  }
+</script>
+
 
 </body>
 </html>
