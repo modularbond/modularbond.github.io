@@ -19,7 +19,7 @@
         #factorization-diagram {
             width: 600px; /* Width of the SVG element for a larger view */
             height: 600px; /* Height of the SVG element for a larger view */
-            animation: spin 32s linear infinite; /* Add rotation animation */
+            animation: spin 45s linear infinite; /* Add rotation animation */
         }
 
         @keyframes spin {
@@ -78,6 +78,7 @@
 </body>
 
 <div id="factorization-diagram"></div>
+<script src="https://d3js.org/d3.v6.min.js"></script>
 <script>
     const number = 125; // Number to create the diagram for
     const factors = [5, 5, 5]; // This represents the factorization of 125 as 5^3
@@ -85,7 +86,7 @@
     const width = 600, // Width of the SVG element for a larger view
           height = 600, // Height of the SVG element for a larger view
           outerRadius = 200, // Radius for the large cluster
-          innerRadius = 50, // Radius for the smaller clusters
+          innerRadius = 55, // Radius for the smaller clusters
           dotRadius = 8; // Radius for each dot
 
     const svg = d3.select("#factorization-diagram")
@@ -93,6 +94,29 @@
                   .attr("width", width)
                   .attr("height", height)
                   .style("transform-origin", "center"); // Ensure rotation is around the center
+
+    // Define gradient
+    const defs = svg.append("defs");
+    const gradient = defs.append("radialGradient")
+                          .attr("id", "dynamicGradient");
+    gradient.append("stop")
+            .attr("offset", "0%")
+            .attr("id", "gradient-start");
+    gradient.append("stop")
+            .attr("offset", "100%")
+            .attr("id", "gradient-end");
+
+    // Function to update gradient colors
+    function updateGradient() {
+        const startColor = d3.interpolateCool(Math.random());
+        const endColor = d3.interpolateCool(Math.random());
+
+        d3.select("#gradient-start").transition().duration(2000).attr("stop-color", startColor);
+        d3.select("#gradient-end").transition().duration(2000).attr("stop-color", endColor).on("end", updateGradient);
+    }
+
+    // Initial update and continuous loop
+    updateGradient();
 
     function calculatePositions(radius, count, startAngle = 0) {
         const positions = [];
@@ -118,10 +142,13 @@
                      .attr("cx", dotPos.x)
                      .attr("cy", dotPos.y)
                      .attr("r", dotRadius)
-                     .style("animation", "pulse 2.5s infinite ease-in-out");
+                     .style("fill", "url(#dynamicGradient)") // Use dynamic gradient fill
+                     .style("animation", "pulse 5s infinite ease-in-out");
             });
         });
     });
 </script>
+
+
 </body>
 </html>
