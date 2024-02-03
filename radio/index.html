@@ -37,6 +37,19 @@
             }
         }
     </style>
+    <audio id="myAudio" src="modular.wav"></audio>
+
+    <script>
+    window.onload = function() {
+    var audioElement = document.getElementById('myAudio');
+    audioElement.play()
+    .catch(function(error) {
+        console.error("Auto-play failed", error);
+        // Handle auto-play failure (e.g., show play button to let user start playback)
+    });
+    };
+    </script>
+
     <script>
         // Function to check the live status of the YouTube channel
         function checkLiveStatusAndRedirect() {
