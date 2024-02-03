@@ -5,39 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>modular.live</title>
     <style>
-        /* Center the video player within the page */
         body, html {
             height: 100%;
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: white; /* Background color */
+            background-color: #fff; /* White background */
         }
         .video-responsive {
             overflow: hidden;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
             position: relative;
-            height: 0;
+            width: 80vw; /* Responsive width, up to a maximum. */
+            max-width: 1280px; /* Maximum width */
         }
         .video-responsive iframe {
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 100%;
             position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
     </style>
 </head>
 <body>
+    <script>
+        // Function to check if the channel is live
+        function checkIfLive() {
+            fetch('https://api.modular.bond/api/youtube-api')
+                .then(response => response.json())
+                .then(data => {
+                    // Assuming the API returns { live: true/false } JSON response
+                    if (!data.live) {
+                        // If the channel is not live, redirect
+                        window.location.href = 'https://modular.bond/radio/';
+                    } else {
+                        // If live, embed the livestream
+                        document.body.innerHTML = `
+                            <div class="video-responsive">
+                                <iframe src="https://www.youtube.com/embed/live_stream?channel=UCXwQ7RZ8pBb4KO-_MI2ff2w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                        `;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error checking live status:', error);
+                    // Handle error (e.g., show message or redirect)
+                });
+        }
 
-<div class="video-responsive">
-    <iframe src="https://www.youtube.com/embed/live_stream?channel=UCXwQ7RZ8pBb4KO-_MI2ff2w"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-    </iframe>
-</div>
-
+        checkIfLive(); // Call the function when the page loads
+    </script>
 </body>
 </html>
