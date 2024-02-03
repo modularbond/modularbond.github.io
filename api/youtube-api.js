@@ -1,32 +1,26 @@
-const allowCors = fn => async (req, res) => {
-    // Dynamically set the allowed origin based on the request origin
-    const allowedOrigins = ['https://www.modular.bond', 'https://www.modularbond-github-o3hgd4j9m-yosephlin.vercel.app'];
-    const origin = req.headers.origin;
-    if (allowedOrigins.includes(origin)) {
-      res.setHeader('Access-Control-Allow-Origin', origin);
+// Import the fetch API for Node.js
+const fetch = require('node-fetch');
+
+module.exports = async (req, res) => {
+    // Retrieve the YouTube API key from environment variables
+    const apiKey = process.env.youtubeAPI;
+    const channelId = 'UCXwQ7RZ8pBb4KO-_MI2ff2w'; // Your YouTube Channel ID
+    const apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&eventType=live&type=video&key=${apiKey}`;
+
+    try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+
+        // Check if there are any live broadcasts
+        if (data.items && data.items.length > 0) {
+            // Respond with the live broadcast details
+            res.status(200).json({ live: true, data: data.items });
+        } else {
+            // Respond indicating the channel is not currently live
+            res.status(200).json({ live: false });
+        }
+    } catch (error) {
+        console.error('Error fetching YouTube API:', error);
+        res.status(500).json({ error: 'Failed to fetch data from YouTube API' });
     }
-  
-    // Set other CORS headers
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
-    res.setHeader(
-      'Access-Control-Allow-Headers',
-      'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-    );
-    
-    // Handle pre-flight requests
-    if (req.method === 'OPTIONS') {
-      res.status(200).end();
-      return;
-    }
-  
-    return await fn(req, res);
-  };
-  
-  // Your handler function here
-  const handler = async (req, res) => {
-    // Your existing logic...
-  };
-  
-  module.exports = allowCors(handler);
-  
+};
