@@ -57,7 +57,16 @@
                   .attr("height", height)
                   .style("transform-origin", "center"); // Ensure rotation is around the center
 
-    // Function to calculate the positions of the groups in a circle
+    // Additional JavaScript for calling the serverless function
+    fetch('https://api.modular.bond/api/youtube-api')
+        .then(response => response.json())
+        .then(data => {
+            console.log('YouTube API data:', data);
+            // Here you can process and display the YouTube data as needed
+            // For example, update the DOM to show live stream info
+        })
+        .catch(error => console.error('Error fetching YouTube API data:', error));
+
     function calculatePositions(radius, count, startAngle = 0) {
         const positions = [];
         for (let i = 0; i < count; i++) {
@@ -69,54 +78,23 @@
         return positions;
     }
 
-    // Calculate positions for the outer groups
     const outerGroupPositions = calculatePositions(outerRadius, factors[0]);
-
     outerGroupPositions.forEach((outerGroupPos, i) => {
-        // Calculate positions for the inner groups within the current outer group
         const innerGroupPositions = calculatePositions(innerRadius, factors[1], Math.PI / factors[1]);
-
         innerGroupPositions.forEach((innerGroupPos, j) => {
             const group = svg.append("g")
                              .attr("transform", `translate(${width / 2 + outerGroupPos.x + innerGroupPos.x}, ${height / 2 - outerGroupPos.y - innerGroupPos.y})`);
-            
-            // Draw the dots with pulse animation
             const dotPositions = calculatePositions(dotRadius * 2.5, factors[2]);
             dotPositions.forEach((dotPos, k) => {
-                const dot = group.append("circle")
-                                 .attr("class", "dot")
-                                 .attr("cx", dotPos.x) // Position relative to the group
-                                 .attr("cy", dotPos.y) // Position relative to the group
-                                 .attr("r", dotRadius);
-
-                // Apply the pulse animation indefinitely
-                dot.style("animation", "pulse 2.5s infinite ease-in-out");
+                group.append("circle")
+                     .attr("class", "dot")
+                     .attr("cx", dotPos.x)
+                     .attr("cy", dotPos.y)
+                     .attr("r", dotRadius)
+                     .style("animation", "pulse 2.5s infinite ease-in-out");
             });
         });
     });
 </script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const apiKey = 'AIzaSyC0MjAiEkS8MDBp_Mm9qcw-V8wt5QbXFPI'; // Replace with your actual API key
-        const channelId = 'UCXwQ7RZ8pBb4KO-_MI2ff2w'; // Your channel ID
-        const apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&type=video&eventType=live&key=${apiKey}`;
-    
-        fetch(apiUrl)
-            .then(response => response.json())
-            .then(data => {
-                if (data.items.length > 0) {
-                    // If there is a live video, redirect to live.html
-                    window.location.href = 'live.html';
-                } else {
-                    // No live video, you can handle this case as needed
-                    console.log('No live stream currently.');
-                }
-            })
-            .catch(error => console.error('Error fetching live stream status:', error));
-    });
-    </script>
-    
-
 </body>
 </html>
