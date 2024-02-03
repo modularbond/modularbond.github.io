@@ -39,7 +39,31 @@
     </style>
 </head>
 <body>
-  
+    
+    <script>
+        // Function to check the live status of the YouTube channel
+        function checkLiveStatusAndRedirect() {
+            fetch('https://api.modular.bond/api/youtube-api')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.pageInfo.totalResults > 0) {
+                        // If the channel is live, redirect
+                        window.location.href = 'https://modular.bond/radio/live';
+                    } else {
+                        // Not live, log status or handle accordingly
+                        console.log('Channel is not live.');
+                    }
+                })
+                .catch(error => console.error('Error fetching live status:', error));
+        }
+
+        // Periodically check the live status every 30 seconds
+        setInterval(checkLiveStatusAndRedirect, 30000);
+
+        // Also check immediately on page load
+        checkLiveStatusAndRedirect();
+    </script>
+
 <div id="factorization-diagram"></div>
 <script>
     const number = 125; // Number to create the diagram for

@@ -1,4 +1,14 @@
 module.exports = async (req, res) => {
+    // Set CORS headers for all responses
+    res.setHeader('Access-Control-Allow-Origin', '*'); // Allows any origin
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS'); // Adjust based on the methods your API supports
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type'); // Allows headers such as Content-Type
+
+    // Handle pre-flight requests for CORS
+    if (req.method === 'OPTIONS') {
+        return res.status(200).end();
+    }
+    
     let fetch;
     try {
         fetch = (await import('node-fetch')).default;
