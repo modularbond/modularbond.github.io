@@ -19,7 +19,7 @@
         #factorization-diagram {
             width: 600px; /* Width of the SVG element for a larger view */
             height: 600px; /* Height of the SVG element for a larger view */
-            animation: spin 25s linear infinite; /* Add rotation animation */
+            animation: spin 32s linear infinite; /* Add rotation animation */
         }
 
         @keyframes spin {
@@ -39,28 +39,21 @@
     </style>
 </head>
 <body>
-
-     <script>
+    <script>
         // Function to check the live status of the YouTube channel
         function checkLiveStatusAndRedirect() {
             fetch('https://api.modular.bond/api/youtube-api')
                 .then(response => response.json())
                 .then(data => {
-                    // Assuming the API correctly reflects the live status
-                    // with `pageInfo.totalResults > 0` indicating an active live stream.
-                    if (data.pageInfo && data.pageInfo.totalResults > 0) {
+                    if (data.pageInfo.totalResults > 0) {
                         // If the channel is live, redirect
                         window.location.href = 'https://modular.bond/radio/live';
                     } else {
                         // Not live, log status or handle accordingly
-                        console.log('We are not live.');
-                        // Optionally, display a message or take other actions
+                        console.log('Channel is not live.');
                     }
                 })
-                .catch(error => {
-                    console.error('Error fetching live status:', error);
-                    // Handle error (e.g., show an error message)
-                });
+                .catch(error => console.error('Error fetching live status:', error));
         }
 
         // Periodically check the live status every 30 seconds
