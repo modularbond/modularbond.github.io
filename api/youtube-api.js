@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
         const response = await fetch(apiUrl);
         const data = await response.json();
 
-        // Check if there are any live broadcasts
+  
         if (data.items && data.items.length > 0) {
             // Respond with the live broadcast details
             res.status(200).json({ live: true, data: data.items });
