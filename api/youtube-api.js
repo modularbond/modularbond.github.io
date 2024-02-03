@@ -1,6 +1,6 @@
 const allowCors = fn => async (req, res) => {
     // Dynamically set the allowed origin based on the request origin
-    const allowedOrigins = ['https://modular.bond', 'https://modularbond-github-o3hgd4j9m-yosephlin.vercel.app'];
+    const allowedOrigins = ['https://www.modular.bond', 'https://www.modularbond-github-o3hgd4j9m-yosephlin.vercel.app'];
     const origin = req.headers.origin;
     if (allowedOrigins.includes(origin)) {
       res.setHeader('Access-Control-Allow-Origin', origin);
