@@ -2,6 +2,9 @@
 const fetch = require('node-fetch');
 
 module.exports = async (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*'); // Adjust in production
+
+
     const apiKey = process.env.youtubeAPI; // Ensure this is set in your Vercel project settings
     const channelId = 'YOUR_CHANNEL_ID';
     const apiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&eventType=live&type=video&key=${apiKey}`;

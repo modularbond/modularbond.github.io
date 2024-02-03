@@ -66,6 +66,25 @@
             // For example, update the DOM to show live stream info
         })
         .catch(error => console.error('Error fetching YouTube API data:', error));
+         // Function to check if the channel is live and redirect
+    function checkIfLiveAndRedirect() {
+        fetch('https://api.modular.bond/api/youtube-api')
+            .then(response => response.json())
+            .then(data => {
+                if (data.isLive) {
+                    // Channel is live, redirect to the live page
+                    window.location.href = 'https://modular.bond/radio/live';
+                } else {
+                    console.log('Channel is not live.');
+                    // Handle the not-live case as needed
+                    // For example, display a message or hide live-specific content
+                }
+            })
+            .catch(error => console.error('Error checking live status:', error));
+    }
+
+    // Call the function to check if live and potentially redirect
+    checkIfLiveAndRedirect();
 
     function calculatePositions(radius, count, startAngle = 0) {
         const positions = [];
