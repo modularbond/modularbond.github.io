@@ -30,32 +30,8 @@
     </style>
 </head>
 <body>
-    <script>
-        // Function to check if the channel is live
-        function checkIfLive() {
-            fetch('https://api.modular.bond/api/youtube-api')
-                .then(response => response.json())
-                .then(data => {
-                    // Assuming the API returns { live: true/false } JSON response
-                    if (!data.live) {
-                        // If the channel is not live, redirect
-                        window.location.href = 'https://modular.bond/radio/';
-                    } else {
-                        // If live, embed the livestream
-                        document.body.innerHTML = `
-                            <div class="video-responsive">
-                                <iframe src="https://www.youtube.com/embed/live_stream?channel=UCXwQ7RZ8pBb4KO-_MI2ff2w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            </div>
-                        `;
-                    }
-                })
-                .catch(error => {
-                    console.error('Error checking live status:', error);
-                    // Handle error (e.g., show message or redirect)
-                });
-        }
-
-        checkIfLive(); // Call the function when the page loads
-    </script>
+    <div class="video-responsive">
+        <iframe src="https://www.youtube.com/embed/live_stream?channel=UCXwQ7RZ8pBb4KO-_MI2ff2w&autoplay=1&controls=0&modestbranding=1&rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
 </body>
 </html>
