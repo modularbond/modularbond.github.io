@@ -111,8 +111,8 @@
         const startColor = d3.interpolateCool(Math.random());
         const endColor = d3.interpolateCool(Math.random());
 
-        d3.select("#gradient-start").transition().duration(2000).attr("stop-color", startColor);
-        d3.select("#gradient-end").transition().duration(2000).attr("stop-color", endColor).on("end", updateGradient);
+        d3.select("#gradient-start").transition().duration(3000).attr("stop-color", startColor);
+        d3.select("#gradient-end").transition().duration(3000).attr("stop-color", endColor).on("end", updateGradient);
     }
 
     // Initial update and continuous loop
